@@ -313,7 +313,8 @@ body {
     .justified-text {
         text-align: justify;
         text-align-last: justify;
-        font-size:12px;
+        font-size:10px;
+        font-weight: 500;
         margin-top:0.75rem;
     }
 
@@ -335,11 +336,11 @@ body {
         font-size: clamp(15rem, 60vw, 30rem);
         width: 100%;
         left: -2.5%;
-        transform: scaleY(240%) scaleX(1.025);
+        transform: scaleY(220%) scaleX(1.025);
         transform-origin: 0 0;
         letter-spacing: -0.02em;
         position: absolute;
-        bottom: 70%;
+        bottom: 60%;
         top: auto;
     }
 
