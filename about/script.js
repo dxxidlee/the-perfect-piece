@@ -4,14 +4,18 @@ document.getElementById('enter-button').addEventListener('click', () => {
     const landingText = document.querySelector('.landing-text');
     const enterButton = document.getElementById('enter-button');
     
-    // Add fade-out classes to trigger animations
-    landingTitle.classList.add('fade-out');
-    landingContent.classList.add('fade-out');
+    // First, fade out text and buttons
     landingText.classList.add('fade-out');
     enterButton.classList.add('fade-out');
     
-    // After animations complete, redirect to main page
+    // After text fades out, start the container and title animations
     setTimeout(() => {
-        window.location.href = '../main-page/index.html';
-    }, 2000); // Wait for animations to complete
+        landingTitle.classList.add('fade-out');
+        landingContent.classList.add('fade-out');
+        
+        // After animations complete, redirect to main page
+        setTimeout(() => {
+            window.location.href = 'https://dxxidlee.github.io/the-perfect-piece/home/';
+        }, 2500); // Wait for container and title animations
+    }, 600); // Wait for text fade out
 }); 
