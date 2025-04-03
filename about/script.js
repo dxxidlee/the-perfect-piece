@@ -16,6 +16,6 @@ document.getElementById('enter-button').addEventListener('click', () => {
         // After animations complete, redirect to main page
         setTimeout(() => {
             window.location.href = 'https://dxxidlee.github.io/the-perfect-piece/home/';
-        }, 2500); // Wait for container and title animations
-    }, 600); // Wait for text fade out
+        }, 2000); // Wait for container and title animations
+    }, 500); // Wait for text fade out
 }); 
