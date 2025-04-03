@@ -313,6 +313,8 @@ body {
     .justified-text {
         text-align: justify;
         text-align-last: justify;
+        font-size:12px;
+        margin-top:0.75rem;
     }
 
     .bottom-container {
@@ -325,32 +327,38 @@ body {
         width: 80vw;
         height: 80vw;
         position: absolute;
-        top: 0;
+        top: 45%;
         transform: translateY(-50%);
     }
 
     .perfect-piece {
         font-size: clamp(15rem, 60vw, 30rem);
         width: 100%;
-        left: 0;
-        letter-spacing: -0.05em;
+        left: -2.5%;
+        transform: scaleY(260%) scaleX(1.025);
+        transform-origin: 0 0;
+        letter-spacing: -0.02em;
         position: absolute;
-        bottom: 0;
+        bottom: 70%;
         top: auto;
-        transform: none;
     }
 
     .dropdown {
         position: fixed;
-        left: 50% !important;
+        left: 24% !important;
         right: auto !important;
-        top: 50%;
+        top: 38%;
         transform: translate(-50%, -50%);
         margin: 0;
-        width: 80vw;
+        width: 40vw;
         max-width: 300px;
         text-align: center;
         text-align-last: center;
+    }
+
+    .hover-button:last-child .dropdown {
+        left: 76% !important;
+        right: auto !important;
     }
 
     .option {
@@ -366,7 +374,7 @@ body {
         position: fixed;
         left: 50% !important;
         right: auto !important;
-        top: 50%;
+        top: 34%;
         transform: translate(-50%, -50%);
         margin: 0;
         width: 80vw;
@@ -378,7 +386,26 @@ body {
     .emotion-value {
         position: relative;
         bottom: auto;
-        margin-top: 0.5rem;
+        margin-top: 0rem;
+    }
+
+    .hover-button:hover .dropdown,
+    .hover-button:hover .emotion-slider {
+        display: none;
+    }
+
+    .hover-button:hover span {
+        color: inherit;
+    }
+
+    /* Add active states for mobile */
+    .hover-button.active span {
+        color: #808080;
+    }
+
+    .hover-button.active .dropdown,
+    .hover-button.active .emotion-slider {
+        display: block;
     }
 }
 

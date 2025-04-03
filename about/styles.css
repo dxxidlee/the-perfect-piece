@@ -51,12 +51,12 @@ body {
     font-family: 'asfalt';
     font-size: clamp(40rem, 70vw, 80rem);
     line-height: 0;
-    letter-spacing: -0.0075em;
+    letter-spacing: -0.025em;
     position: absolute;
     width: 140%;
     text-align: center;
     z-index: -1;
-    left: -19.75vw;
+    left: -20.75vw;
     top: 50%;
     transform: translateY(-49%) scaleY(0.8);
     transform-origin: center;

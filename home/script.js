@@ -1,3 +1,6 @@
+// Add at the start of the file
+const isMobile = window.matchMedia('(max-width: 750px)').matches;
+
 // Emotion Slider
 const emotionSlider = document.querySelector('.emotion-slider input[type="range"]');
 const emotionValue = document.querySelector('.emotion-value');
@@ -5,15 +8,15 @@ const grayBox = document.querySelector('.gray-box');
 
 const emotionLabels = [
     'NOT EMOTIONAL',
-    'MILDLY EMOTIONAL',
+    'SLIGHTLY EMOTIONAL',
     'EMOTIONAL',
-    'STRONGLY EMOTIONAL',
-    'INTENSELY EMOTIONAL'
+    'NOTABLY EMOTIONAL',
+    'HIGHLY EMOTIONAL'
 ];
 
 // Define all possible values
-const styleOptions = ['ABSTRACT', 'FIGURE', 'SURREALISTIC', 'MINIMALISTIC'];
-const mediumOptions = ['PAINTING', 'SCULPTURE', 'POSTER', 'PHOTOGRAPHY'];
+const styleOptions = ['ABSTRACT', 'FIGURAL', 'SURREAL', 'MINIMAL'];
+const mediumOptions = ['PAINTING', 'SCULPTURE', 'POSTER', 'PHOTO'];
 
 // Create mapping for all combinations
 const imageMapping = {
@@ -21,89 +24,89 @@ const imageMapping = {
     'ABSTRACT_NOT EMOTIONAL_PAINTING': 1,
     'ABSTRACT_NOT EMOTIONAL_SCULPTURE': 2,
     'ABSTRACT_NOT EMOTIONAL_POSTER': 3,
-    'ABSTRACT_NOT EMOTIONAL_PHOTOGRAPHY': 4,
-    'ABSTRACT_MILDLY EMOTIONAL_PAINTING': 5,
-    'ABSTRACT_MILDLY EMOTIONAL_SCULPTURE': 6,
-    'ABSTRACT_MILDLY EMOTIONAL_POSTER': 7,
-    'ABSTRACT_MILDLY EMOTIONAL_PHOTOGRAPHY': 8,
+    'ABSTRACT_NOT EMOTIONAL_PHOTO': 4,
+    'ABSTRACT_SLIGHTLY EMOTIONAL_PAINTING': 5,
+    'ABSTRACT_SLIGHTLY EMOTIONAL_SCULPTURE': 6,
+    'ABSTRACT_SLIGHTLY EMOTIONAL_POSTER': 7,
+    'ABSTRACT_SLIGHTLY EMOTIONAL_PHOTO': 8,
     'ABSTRACT_EMOTIONAL_PAINTING': 9,
     'ABSTRACT_EMOTIONAL_SCULPTURE': 10,
     'ABSTRACT_EMOTIONAL_POSTER': 11,
-    'ABSTRACT_EMOTIONAL_PHOTOGRAPHY': 12,
-    'ABSTRACT_STRONGLY EMOTIONAL_PAINTING': 13,
-    'ABSTRACT_STRONGLY EMOTIONAL_SCULPTURE': 14,
-    'ABSTRACT_STRONGLY EMOTIONAL_POSTER': 15,
-    'ABSTRACT_STRONGLY EMOTIONAL_PHOTOGRAPHY': 16,
-    'ABSTRACT_INTENSELY EMOTIONAL_PAINTING': 17,
-    'ABSTRACT_INTENSELY EMOTIONAL_SCULPTURE': 18,
-    'ABSTRACT_INTENSELY EMOTIONAL_POSTER': 19,
-    'ABSTRACT_INTENSELY EMOTIONAL_PHOTOGRAPHY': 20,
+    'ABSTRACT_EMOTIONAL_PHOTO': 12,
+    'ABSTRACT_NOTABLY EMOTIONAL_PAINTING': 13,
+    'ABSTRACT_NOTABLY EMOTIONAL_SCULPTURE': 14,
+    'ABSTRACT_NOTABLY EMOTIONAL_POSTER': 15,
+    'ABSTRACT_NOTABLY EMOTIONAL_PHOTO': 16,
+    'ABSTRACT_HIGHLY EMOTIONAL_PAINTING': 17,
+    'ABSTRACT_HIGHLY EMOTIONAL_SCULPTURE': 18,
+    'ABSTRACT_HIGHLY EMOTIONAL_POSTER': 19,
+    'ABSTRACT_HIGHLY EMOTIONAL_PHOTO': 20,
 
-    // FIGURE combinations (20)
-    'FIGURE_NOT EMOTIONAL_PAINTING': 21,
-    'FIGURE_NOT EMOTIONAL_SCULPTURE': 22,
-    'FIGURE_NOT EMOTIONAL_POSTER': 23,
-    'FIGURE_NOT EMOTIONAL_PHOTOGRAPHY': 24,
-    'FIGURE_MILDLY EMOTIONAL_PAINTING': 25,
-    'FIGURE_MILDLY EMOTIONAL_SCULPTURE': 26,
-    'FIGURE_MILDLY EMOTIONAL_POSTER': 27,
-    'FIGURE_MILDLY EMOTIONAL_PHOTOGRAPHY': 28,
-    'FIGURE_EMOTIONAL_PAINTING': 29,
-    'FIGURE_EMOTIONAL_SCULPTURE': 30,
-    'FIGURE_EMOTIONAL_POSTER': 31,
-    'FIGURE_EMOTIONAL_PHOTOGRAPHY': 32,
-    'FIGURE_STRONGLY EMOTIONAL_PAINTING': 33,
-    'FIGURE_STRONGLY EMOTIONAL_SCULPTURE': 34,
-    'FIGURE_STRONGLY EMOTIONAL_POSTER': 35,
-    'FIGURE_STRONGLY EMOTIONAL_PHOTOGRAPHY': 36,
-    'FIGURE_INTENSELY EMOTIONAL_PAINTING': 37,
-    'FIGURE_INTENSELY EMOTIONAL_SCULPTURE': 38,
-    'FIGURE_INTENSELY EMOTIONAL_POSTER': 39,
-    'FIGURE_INTENSELY EMOTIONAL_PHOTOGRAPHY': 40,
+    // FIGURAL combinations (20)
+    'FIGURAL_NOT EMOTIONAL_PAINTING': 21,
+    'FIGURAL_NOT EMOTIONAL_SCULPTURE': 22,
+    'FIGURAL_NOT EMOTIONAL_POSTER': 23,
+    'FIGURAL_NOT EMOTIONAL_PHOTO': 24,
+    'FIGURAL_SLIGHTLY EMOTIONAL_PAINTING': 25,
+    'FIGURAL_SLIGHTLY EMOTIONAL_SCULPTURE': 26,
+    'FIGURAL_SLIGHTLY EMOTIONAL_POSTER': 27,
+    'FIGURAL_SLIGHTLY EMOTIONAL_PHOTO': 28,
+    'FIGURAL_EMOTIONAL_PAINTING': 29,
+    'FIGURAL_EMOTIONAL_SCULPTURE': 30,
+    'FIGURAL_EMOTIONAL_POSTER': 31,
+    'FIGURAL_EMOTIONAL_PHOTO': 32,
+    'FIGURAL_NOTABLY EMOTIONAL_PAINTING': 33,
+    'FIGURAL_NOTABLY EMOTIONAL_SCULPTURE': 34,
+    'FIGURAL_NOTABLY EMOTIONAL_POSTER': 35,
+    'FIGURAL_NOTABLY EMOTIONAL_PHOTO': 36,
+    'FIGURAL_HIGHLY EMOTIONAL_PAINTING': 37,
+    'FIGURAL_HIGHLY EMOTIONAL_SCULPTURE': 38,
+    'FIGURAL_HIGHLY EMOTIONAL_POSTER': 39,
+    'FIGURAL_HIGHLY EMOTIONAL_PHOTO': 40,
 
-    // SURREALISTIC combinations (20)
-    'SURREALISTIC_NOT EMOTIONAL_PAINTING': 41,
-    'SURREALISTIC_NOT EMOTIONAL_SCULPTURE': 42,
-    'SURREALISTIC_NOT EMOTIONAL_POSTER': 43,
-    'SURREALISTIC_NOT EMOTIONAL_PHOTOGRAPHY': 44,
-    'SURREALISTIC_MILDLY EMOTIONAL_PAINTING': 45,
-    'SURREALISTIC_MILDLY EMOTIONAL_SCULPTURE': 46,
-    'SURREALISTIC_MILDLY EMOTIONAL_POSTER': 47,
-    'SURREALISTIC_MILDLY EMOTIONAL_PHOTOGRAPHY': 48,
-    'SURREALISTIC_EMOTIONAL_PAINTING': 49,
-    'SURREALISTIC_EMOTIONAL_SCULPTURE': 50,
-    'SURREALISTIC_EMOTIONAL_POSTER': 51,
-    'SURREALISTIC_EMOTIONAL_PHOTOGRAPHY': 52,
-    'SURREALISTIC_STRONGLY EMOTIONAL_PAINTING': 53,
-    'SURREALISTIC_STRONGLY EMOTIONAL_SCULPTURE': 54,
-    'SURREALISTIC_STRONGLY EMOTIONAL_POSTER': 55,
-    'SURREALISTIC_STRONGLY EMOTIONAL_PHOTOGRAPHY': 56,
-    'SURREALISTIC_INTENSELY EMOTIONAL_PAINTING': 57,
-    'SURREALISTIC_INTENSELY EMOTIONAL_SCULPTURE': 58,
-    'SURREALISTIC_INTENSELY EMOTIONAL_POSTER': 59,
-    'SURREALISTIC_INTENSELY EMOTIONAL_PHOTOGRAPHY': 60,
+    // SURREAL combinations (20)
+    'SURREAL_NOT EMOTIONAL_PAINTING': 41,
+    'SURREAL_NOT EMOTIONAL_SCULPTURE': 42,
+    'SURREAL_NOT EMOTIONAL_POSTER': 43,
+    'SURREAL_NOT EMOTIONAL_PHOTO': 44,
+    'SURREAL_SLIGHTLY EMOTIONAL_PAINTING': 45,
+    'SURREAL_SLIGHTLY EMOTIONAL_SCULPTURE': 46,
+    'SURREAL_SLIGHTLY EMOTIONAL_POSTER': 47,
+    'SURREAL_SLIGHTLY EMOTIONAL_PHOTO': 48,
+    'SURREAL_EMOTIONAL_PAINTING': 49,
+    'SURREAL_EMOTIONAL_SCULPTURE': 50,
+    'SURREAL_EMOTIONAL_POSTER': 51,
+    'SURREAL_EMOTIONAL_PHOTO': 52,
+    'SURREAL_NOTABLY EMOTIONAL_PAINTING': 53,
+    'SURREAL_NOTABLY EMOTIONAL_SCULPTURE': 54,
+    'SURREAL_NOTABLY EMOTIONAL_POSTER': 55,
+    'SURREAL_NOTABLY EMOTIONAL_PHOTO': 56,
+    'SURREAL_HIGHLY EMOTIONAL_PAINTING': 57,
+    'SURREAL_HIGHLY EMOTIONAL_SCULPTURE': 58,
+    'SURREAL_HIGHLY EMOTIONAL_POSTER': 59,
+    'SURREAL_HIGHLY EMOTIONAL_PHOTO': 60,
 
-    // MINIMALISTIC combinations (20)
-    'MINIMALISTIC_NOT EMOTIONAL_PAINTING': 61,
-    'MINIMALISTIC_NOT EMOTIONAL_SCULPTURE': 62,
-    'MINIMALISTIC_NOT EMOTIONAL_POSTER': 63,
-    'MINIMALISTIC_NOT EMOTIONAL_PHOTOGRAPHY': 64,
-    'MINIMALISTIC_MILDLY EMOTIONAL_PAINTING': 65,
-    'MINIMALISTIC_MILDLY EMOTIONAL_SCULPTURE': 66,
-    'MINIMALISTIC_MILDLY EMOTIONAL_POSTER': 67,
-    'MINIMALISTIC_MILDLY EMOTIONAL_PHOTOGRAPHY': 68,
-    'MINIMALISTIC_EMOTIONAL_PAINTING': 69,
-    'MINIMALISTIC_EMOTIONAL_SCULPTURE': 70,
-    'MINIMALISTIC_EMOTIONAL_POSTER': 71,
-    'MINIMALISTIC_EMOTIONAL_PHOTOGRAPHY': 72,
-    'MINIMALISTIC_STRONGLY EMOTIONAL_PAINTING': 73,
-    'MINIMALISTIC_STRONGLY EMOTIONAL_SCULPTURE': 74,
-    'MINIMALISTIC_STRONGLY EMOTIONAL_POSTER': 75,
-    'MINIMALISTIC_STRONGLY EMOTIONAL_PHOTOGRAPHY': 76,
-    'MINIMALISTIC_INTENSELY EMOTIONAL_PAINTING': 77,
-    'MINIMALISTIC_INTENSELY EMOTIONAL_SCULPTURE': 78,
-    'MINIMALISTIC_INTENSELY EMOTIONAL_POSTER': 79,
-    'MINIMALISTIC_INTENSELY EMOTIONAL_PHOTOGRAPHY': 80
+    // MINIMAL combinations (20)
+    'MINIMAL_NOT EMOTIONAL_PAINTING': 61,
+    'MINIMAL_NOT EMOTIONAL_SCULPTURE': 62,
+    'MINIMAL_NOT EMOTIONAL_POSTER': 63,
+    'MINIMAL_NOT EMOTIONAL_PHOTO': 64,
+    'MINIMAL_SLIGHTLY EMOTIONAL_PAINTING': 65,
+    'MINIMAL_SLIGHTLY EMOTIONAL_SCULPTURE': 66,
+    'MINIMAL_SLIGHTLY EMOTIONAL_POSTER': 67,
+    'MINIMAL_SLIGHTLY EMOTIONAL_PHOTO': 68,
+    'MINIMAL_EMOTIONAL_PAINTING': 69,
+    'MINIMAL_EMOTIONAL_SCULPTURE': 70,
+    'MINIMAL_EMOTIONAL_POSTER': 71,
+    'MINIMAL_EMOTIONAL_PHOTO': 72,
+    'MINIMAL_NOTABLY EMOTIONAL_PAINTING': 73,
+    'MINIMAL_NOTABLY EMOTIONAL_SCULPTURE': 74,
+    'MINIMAL_NOTABLY EMOTIONAL_POSTER': 75,
+    'MINIMAL_NOTABLY EMOTIONAL_PHOTO': 76,
+    'MINIMAL_HIGHLY EMOTIONAL_PAINTING': 77,
+    'MINIMAL_HIGHLY EMOTIONAL_SCULPTURE': 78,
+    'MINIMAL_HIGHLY EMOTIONAL_POSTER': 79,
+    'MINIMAL_HIGHLY EMOTIONAL_PHOTO': 80
 };
 
 // Track all selections
@@ -147,55 +150,77 @@ emotionSlider.addEventListener('input', (e) => {
     checkAndShowImage();
 });
 
-// Hover behavior for dropdowns and emotion slider
+// Hover and click behavior for dropdowns and emotion slider
 const hoverButtons = document.querySelectorAll('.hover-button');
+let activeButton = null;
 
 hoverButtons.forEach(button => {
     const dropdown = button.querySelector('.dropdown');
     const emotionSlider = button.querySelector('.emotion-slider');
     let timeout;
 
-    // Mouse enter on button
-    button.addEventListener('mouseenter', () => {
-        if (dropdown) dropdown.style.display = 'block';
-        if (emotionSlider) emotionSlider.style.display = 'block';
-        button.querySelector('span').style.color = '#808080';
-    });
-
-    // Mouse leave from button
-    button.addEventListener('mouseleave', () => {
-        timeout = setTimeout(() => {
-            if (dropdown) dropdown.style.display = 'none';
-            if (emotionSlider) emotionSlider.style.display = 'none';
-            button.querySelector('span').style.color = '#000';
-        }, 100);
-    });
-
-    // Mouse enter on dropdown/slider
-    if (dropdown) {
-        dropdown.addEventListener('mouseenter', () => {
-            clearTimeout(timeout);
-            dropdown.style.display = 'block';
+    if (isMobile) {
+        // Click handling for mobile
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Close any other open dropdowns/sliders
+            if (activeButton && activeButton !== button) {
+                activeButton.classList.remove('active');
+            }
+            
+            // Toggle current dropdown/slider
+            button.classList.toggle('active');
+            activeButton = button.classList.contains('active') ? button : null;
+        });
+    } else {
+        // Mouse enter on button (desktop only)
+        button.addEventListener('mouseenter', () => {
+            if (dropdown) dropdown.style.display = 'block';
+            if (emotionSlider) emotionSlider.style.display = 'block';
             button.querySelector('span').style.color = '#808080';
         });
 
-        dropdown.addEventListener('mouseleave', () => {
-            dropdown.style.display = 'none';
-            button.querySelector('span').style.color = '#000';
+        // Mouse leave from button (desktop only)
+        button.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                if (dropdown) dropdown.style.display = 'none';
+                if (emotionSlider) emotionSlider.style.display = 'none';
+                button.querySelector('span').style.color = '#000';
+            }, 100);
         });
+    }
 
-        // Handle option hover and click events
+    // Handle dropdown/slider interactions
+    if (dropdown) {
+        if (!isMobile) {
+            dropdown.addEventListener('mouseenter', () => {
+                clearTimeout(timeout);
+                dropdown.style.display = 'block';
+                button.querySelector('span').style.color = '#808080';
+            });
+
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.style.display = 'none';
+                button.querySelector('span').style.color = '#000';
+            });
+        }
+
+        // Handle option click events
         const options = dropdown.querySelectorAll('.option');
         options.forEach(option => {
-            option.addEventListener('mouseenter', () => {
-                option.style.color = '#808080';
-            });
+            if (!isMobile) {
+                option.addEventListener('mouseenter', () => {
+                    option.style.color = '#808080';
+                });
 
-            option.addEventListener('mouseleave', () => {
-                option.style.color = '#000';
-            });
+                option.addEventListener('mouseleave', () => {
+                    option.style.color = '#000';
+                });
+            }
 
-            option.addEventListener('click', () => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
                 // Store the selected value
                 const selectedValue = option.textContent;
                 const buttonText = button.querySelector('span');
@@ -209,9 +234,14 @@ hoverButtons.forEach(button => {
                     selections.medium = selectedValue;
                 }
                 
-                // Hide the dropdown
-                dropdown.style.display = 'none';
-                button.querySelector('span').style.color = '#000';
+                // Hide the dropdown and reset styles
+                if (isMobile) {
+                    button.classList.remove('active');
+                    activeButton = null;
+                } else {
+                    dropdown.style.display = 'none';
+                    button.querySelector('span').style.color = '#000';
+                }
 
                 // Check if we should show an image
                 checkAndShowImage();
@@ -220,15 +250,25 @@ hoverButtons.forEach(button => {
     }
 
     if (emotionSlider) {
-        emotionSlider.addEventListener('mouseenter', () => {
-            clearTimeout(timeout);
-            emotionSlider.style.display = 'block';
-            button.querySelector('span').style.color = '#808080';
-        });
+        if (!isMobile) {
+            emotionSlider.addEventListener('mouseenter', () => {
+                clearTimeout(timeout);
+                emotionSlider.style.display = 'block';
+                button.querySelector('span').style.color = '#808080';
+            });
 
-        emotionSlider.addEventListener('mouseleave', () => {
-            emotionSlider.style.display = 'none';
-            button.querySelector('span').style.color = '#000';
-        });
+            emotionSlider.addEventListener('mouseleave', () => {
+                emotionSlider.style.display = 'none';
+                button.querySelector('span').style.color = '#000';
+            });
+        }
+    }
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', () => {
+    if (isMobile && activeButton) {
+        activeButton.classList.remove('active');
+        activeButton = null;
     }
 }); 
